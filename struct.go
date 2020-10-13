@@ -1,4 +1,4 @@
-package rebotapi
+package qqbotapi
 
 type RespHead struct {
 	Ret int64  `json:"Ret"`

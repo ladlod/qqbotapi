@@ -1,1 +1,1 @@
-package rebotapi
+package qqbotapi

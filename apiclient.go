@@ -1,4 +1,4 @@
-package rebotapi
+package qqbotapi
 
 import (
 	"fmt"

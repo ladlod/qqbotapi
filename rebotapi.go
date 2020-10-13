@@ -1,17 +1,17 @@
-package rebotapi
+package qqbotapi
 
 import (
 	"strconv"
 	"strings"
 )
 
-type rebotClient struct {
+type RebotClient struct {
 	client    *apiClient
 	currentQQ string
 }
 
-func NewRebotClient(hostport string, currentQQ int64) (c *rebotClient) {
-	c = &rebotClient{
+func NewRebotClient(hostport string, currentQQ int64) (c *RebotClient) {
+	c = &RebotClient{
 		client:    NewApiclient(hostport),
 		currentQQ: strconv.FormatInt(currentQQ, 10),
 	}
@@ -19,66 +19,66 @@ func NewRebotClient(hostport string, currentQQ int64) (c *rebotClient) {
 	return
 }
 
-func (c *rebotClient) InstallService() (err error) {
+func (c *RebotClient) InstallService() (err error) {
 	return
 }
 
-func (c *rebotClient) SendMsg(param *SendMsgParam) (err error) {
+func (c *RebotClient) SendMsg(param *SendMsgParam) (err error) {
 	resp := &RespHead{}
 	action := "LuaApiCaller?qq=CurrentQQ&funcname=SendMsg&timeout=10"
 	strings.Replace(action, "CurrentQQ", c.currentQQ, -1)
 	err = c.client.Post("v1", "", action, param, resp)
 	if err != nil {
-		logError("send req failed, err: %v", err)
+		LogError("send req failed, err: %v", err)
 		return
 	}
 	if resp.Ret != 0 {
-		logError("ret is not 0, msg:%v", resp.Msg)
+		LogError("ret is not 0, msg:%v", resp.Msg)
 		return
 	}
 	return
 }
 
-func (c *rebotClient) GetQQUserList(param *GetQQUserListParam) (err error, resp *GetQQUserListResp) {
+func (c *RebotClient) GetQQUserList(param *GetQQUserListParam) (err error, resp *GetQQUserListResp) {
 	resp = &GetQQUserListResp{}
 	action := "LuaApiCaller?qq=CurrentQQ&funcname=GetQQUserList&timeout=10"
 	strings.Replace(action, "CurrentQQ", c.currentQQ, -1)
 	err = c.client.Post("v1", "", action, param, resp)
 	if err != nil {
-		logError("send req failed, err: %v", err)
+		LogError("send req failed, err: %v", err)
 		return
 	}
 	return
 }
 
-func (c *rebotClient) SearchGroup(param *SearchGroupParam) (err error, resp *SearchGroupResp) {
+func (c *RebotClient) SearchGroup(param *SearchGroupParam) (err error, resp *SearchGroupResp) {
 	resp = &SearchGroupResp{}
 	action := "LuaApiCaller?qq=CurrentQQ&funcname=SearchGroup&timeout=10"
 	strings.Replace(action, "CurrentQQ", c.currentQQ, -1)
 	err = c.client.Post("v1", "", action, param, resp)
 	if err != nil {
-		logError("send req failed, err: %v", err)
+		LogError("send req failed, err: %v", err)
 		return
 	}
 	return
 }
 
-func (c *rebotClient) GetGroupList() (err error) {
+func (c *RebotClient) GetGroupList() (err error) {
 	return
 }
 
-func (c *rebotClient) AddQQUser() (err error) {
+func (c *RebotClient) AddQQUser() (err error) {
 	return
 }
 
-func (c *rebotClient) RevokeMsg() (err error) {
+func (c *RebotClient) RevokeMsg() (err error) {
 	return
 }
 
-func (c *rebotClient) ShutUp() (err error) {
+func (c *RebotClient) ShutUp() (err error) {
 	return
 }
 
-func (c *rebotClient) LogOut() (err error) {
+func (c *RebotClient) LogOut() (err error) {
 	return
 }
