@@ -55,6 +55,7 @@ func (c *apiClient) Post(category, model, action string, param interface{}, resp
 
 	payload, err := ioutil.ReadAll(httpResp.Body)
 	kJson.Unmarshal(payload, resp)
+	LogInfo("send req, url:%v, req:%v, resp:%v", url, string(body), string(payload))
 
 	return
 }
@@ -83,6 +84,7 @@ func (c *apiClient) Get(category, model, action string, resp interface{}) (err e
 
 	payload, err := ioutil.ReadAll(httpResp.Body)
 	kJson.Unmarshal(payload, resp)
+	LogInfo("send req, url:%v, resp:%v", url, string(payload))
 
 	return
 }
