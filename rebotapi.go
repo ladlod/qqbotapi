@@ -5,13 +5,13 @@ import (
 	"strings"
 )
 
-type RebotClient struct {
+type RobotClient struct {
 	client    *apiClient
 	currentQQ string
 }
 
-func NewRebotClient(hostport string, currentQQ int64) (c *RebotClient) {
-	c = &RebotClient{
+func NewRobotClient(hostport string, currentQQ int64) (c *RobotClient) {
+	c = &RobotClient{
 		client:    NewApiclient(hostport),
 		currentQQ: strconv.FormatInt(currentQQ, 10),
 	}
@@ -19,11 +19,11 @@ func NewRebotClient(hostport string, currentQQ int64) (c *RebotClient) {
 	return
 }
 
-func (c *RebotClient) InstallService() (err error) {
+func (c *RobotClient) InstallService() (err error) {
 	return
 }
 
-func (c *RebotClient) SendMsg(param *SendMsgParam) (err error) {
+func (c *RobotClient) SendMsg(param *SendMsgParam) (err error) {
 	resp := &RespHead{}
 	action := "LuaApiCaller?qq=CurrentQQ&funcname=SendMsg&timeout=10"
 	action = strings.Replace(action, "CurrentQQ", c.currentQQ, -1)
@@ -39,7 +39,7 @@ func (c *RebotClient) SendMsg(param *SendMsgParam) (err error) {
 	return
 }
 
-func (c *RebotClient) GetQQUserList(param *GetQQUserListParam) (err error, resp *GetQQUserListResp) {
+func (c *RobotClient) GetQQUserList(param *GetQQUserListParam) (err error, resp *GetQQUserListResp) {
 	resp = &GetQQUserListResp{}
 	action := "LuaApiCaller?qq=CurrentQQ&funcname=GetQQUserList&timeout=10"
 	action = strings.Replace(action, "CurrentQQ", c.currentQQ, -1)
@@ -51,7 +51,7 @@ func (c *RebotClient) GetQQUserList(param *GetQQUserListParam) (err error, resp 
 	return
 }
 
-func (c *RebotClient) SearchGroup(param *SearchGroupParam) (err error, resp *SearchGroupResp) {
+func (c *RobotClient) SearchGroup(param *SearchGroupParam) (err error, resp *SearchGroupResp) {
 	resp = &SearchGroupResp{}
 	action := "LuaApiCaller?qq=CurrentQQ&funcname=SearchGroup&timeout=10"
 	action = strings.Replace(action, "CurrentQQ", c.currentQQ, -1)
@@ -63,22 +63,22 @@ func (c *RebotClient) SearchGroup(param *SearchGroupParam) (err error, resp *Sea
 	return
 }
 
-func (c *RebotClient) GetGroupList() (err error) {
+func (c *RobotClient) GetGroupList() (err error) {
 	return
 }
 
-func (c *RebotClient) AddQQUser() (err error) {
+func (c *RobotClient) AddQQUser() (err error) {
 	return
 }
 
-func (c *RebotClient) RevokeMsg() (err error) {
+func (c *RobotClient) RevokeMsg() (err error) {
 	return
 }
 
-func (c *RebotClient) ShutUp() (err error) {
+func (c *RobotClient) ShutUp() (err error) {
 	return
 }
 
-func (c *RebotClient) LogOut() (err error) {
+func (c *RobotClient) LogOut() (err error) {
 	return
 }
