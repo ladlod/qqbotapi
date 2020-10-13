@@ -41,3 +41,22 @@ type SearchGroupResp struct {
 	GroupQuestion     string `json:"GroupQuestion"`     // 进群问题
 	GroupTotalMembers int64  `json:"GroupTotalMembers"` // 当前群人数
 }
+
+// 获取好友列表
+type GetQQUserListParam struct {
+	StartIndex int64 `json:"StartIndex"`
+}
+
+type GetQQUserListResp struct {
+	FriendCount int64       `json:"Friend_Count"`
+	FriendList  []*FriendSt `json:"FriendList"`
+}
+
+type FriendSt struct {
+	FriendUin int64  `json:"FriendUin"` // 好友账号
+	IsRemark  bool   `json:"IsRemark"`  // 是否有备注
+	NickName  string `json:"NickName"`  // 昵称
+	OnlineStr string `json:"OnlineStr"` // 在线状态
+	Remark    string `json:"Remark"`    // 备注
+	Status    int64  `json:"Status"`    // 状态 10.在线 20.隐身
+}

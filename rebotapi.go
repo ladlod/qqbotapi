@@ -29,7 +29,7 @@ func (c *rebotClient) SendMsg(param *SendMsgParam) (err error) {
 	strings.Replace(action, "CurrentQQ", c.currentQQ, -1)
 	err = c.client.Post("v1", "", action, param, resp)
 	if err != nil {
-		logError("send msg failed, err: %v", err)
+		logError("send req failed, err: %v", err)
 		return
 	}
 	if resp.Ret != 0 {
@@ -39,7 +39,15 @@ func (c *rebotClient) SendMsg(param *SendMsgParam) (err error) {
 	return
 }
 
-func (c *rebotClient) GetQQUserList() (err error) {
+func (c *rebotClient) GetQQUserList(param *GetQQUserListParam) (err error, resp *GetQQUserListResp) {
+	resp = &GetQQUserListResp{}
+	action := "LuaApiCaller?qq=CurrentQQ&funcname=GetQQUserList&timeout=10"
+	strings.Replace(action, "CurrentQQ", c.currentQQ, -1)
+	err = c.client.Post("v1", "", action, param, resp)
+	if err != nil {
+		logError("send req failed, err: %v", err)
+		return
+	}
 	return
 }
 
@@ -49,7 +57,7 @@ func (c *rebotClient) SearchGroup(param *SearchGroupParam) (err error, resp *Sea
 	strings.Replace(action, "CurrentQQ", c.currentQQ, -1)
 	err = c.client.Post("v1", "", action, param, resp)
 	if err != nil {
-		logError("send msg failed, err: %v", err)
+		logError("send req failed, err: %v", err)
 		return
 	}
 	return
@@ -63,7 +71,7 @@ func (c *rebotClient) AddQQUser() (err error) {
 	return
 }
 
-func (c *rebotClient) RemoveMsg() (err error) {
+func (c *rebotClient) RevokeMsg() (err error) {
 	return
 }
 
