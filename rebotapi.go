@@ -26,7 +26,7 @@ func (c *RebotClient) InstallService() (err error) {
 func (c *RebotClient) SendMsg(param *SendMsgParam) (err error) {
 	resp := &RespHead{}
 	action := "LuaApiCaller?qq=CurrentQQ&funcname=SendMsg&timeout=10"
-	strings.Replace(action, "CurrentQQ", c.currentQQ, -1)
+	action = strings.Replace(action, "CurrentQQ", c.currentQQ, -1)
 	err = c.client.Post("v1", "", action, param, resp)
 	if err != nil {
 		LogError("send req failed, err: %v", err)
@@ -42,7 +42,7 @@ func (c *RebotClient) SendMsg(param *SendMsgParam) (err error) {
 func (c *RebotClient) GetQQUserList(param *GetQQUserListParam) (err error, resp *GetQQUserListResp) {
 	resp = &GetQQUserListResp{}
 	action := "LuaApiCaller?qq=CurrentQQ&funcname=GetQQUserList&timeout=10"
-	strings.Replace(action, "CurrentQQ", c.currentQQ, -1)
+	action = strings.Replace(action, "CurrentQQ", c.currentQQ, -1)
 	err = c.client.Post("v1", "", action, param, resp)
 	if err != nil {
 		LogError("send req failed, err: %v", err)
@@ -54,7 +54,7 @@ func (c *RebotClient) GetQQUserList(param *GetQQUserListParam) (err error, resp 
 func (c *RebotClient) SearchGroup(param *SearchGroupParam) (err error, resp *SearchGroupResp) {
 	resp = &SearchGroupResp{}
 	action := "LuaApiCaller?qq=CurrentQQ&funcname=SearchGroup&timeout=10"
-	strings.Replace(action, "CurrentQQ", c.currentQQ, -1)
+	action = strings.Replace(action, "CurrentQQ", c.currentQQ, -1)
 	err = c.client.Post("v1", "", action, param, resp)
 	if err != nil {
 		LogError("send req failed, err: %v", err)

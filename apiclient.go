@@ -24,7 +24,7 @@ func NewApiclient(hostport string) (c *apiClient) {
 			Transport: &http.Transport{
 				MaxIdleConnsPerHost: 64,
 			},
-			Timeout: 1 * time.Second,
+			Timeout: 10 * time.Second,
 		},
 	}
 	return
